@@ -57,7 +57,7 @@ const UploadPage = () => {
       // Convert Dropbox URL if needed
       const processedUrl = convertDropboxUrlToDirectLink(formData.url);
       
-      const response = await fetch('http://localhost:5000/upload', {
+      const response = await fetch('https://assignment-ikarus.onrender.com/upload', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

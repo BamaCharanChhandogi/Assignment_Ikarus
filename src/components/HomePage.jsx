@@ -17,7 +17,7 @@ const HomePage = () => {
   const fetchModels = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/models');
+      const response = await fetch('https://assignment-ikarus.onrender.com/models');
       if (!response.ok) {
         throw new Error('Failed to fetch models');
       }
