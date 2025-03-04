@@ -1,3 +1,4 @@
+require('dotenv').config(); // Add this at the top to load environment variables
 const express = require('express');
 const cors = require('cors');
 const admin = require('firebase-admin');
@@ -5,11 +6,15 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Initialize Firebase
-const serviceAccount = require('./serviceAccountKey.json'); // You'll need to create this file
+// Initialize Firebase with environment variables
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert({
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
+  })
 });
+
 const db = admin.firestore();
 const modelsCollection = db.collection('models');
 
